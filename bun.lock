@@ -6,10 +6,6 @@
       "name": "claude-code",
       "dependencies": {
         "@alcalzone/ansi-tokenize": "^0.3.0",
-        "@ant/claude-for-chrome-mcp": "workspace:*",
-        "@ant/computer-use-input": "workspace:*",
-        "@ant/computer-use-mcp": "workspace:*",
-        "@ant/computer-use-swift": "workspace:*",
         "@anthropic-ai/bedrock-sdk": "^0.26.4",
         "@anthropic-ai/claude-agent-sdk": "^0.2.87",
         "@anthropic-ai/foundry-sdk": "^0.2.3",
@@ -55,10 +51,14 @@
         "cacache": "^20.0.4",
         "chalk": "^5.6.2",
         "chokidar": "^5.0.0",
+        "claude-for-chrome": "workspace:*",
         "cli-boxes": "^4.0.1",
         "cli-highlight": "^2.1.11",
         "code-excerpt": "^4.0.0",
         "color-diff-napi": "workspace:*",
+        "computer-use-input": "workspace:*",
+        "computer-use-mcp": "workspace:*",
+        "computer-use-swift": "workspace:*",
         "diff": "^8.0.4",
         "emoji-regex": "^10.6.0",
         "env-paths": "^4.0.0",
@@ -123,24 +123,12 @@
         "typescript": "^6.0.2",
       },
     },
-    "packages/@ant/claude-for-chrome-mcp": {
-      "name": "@ant/claude-for-chrome-mcp",
-      "version": "1.0.0",
-    },
-    "packages/@ant/computer-use-input": {
-      "name": "@ant/computer-use-input",
-      "version": "1.0.0",
-    },
-    "packages/@ant/computer-use-mcp": {
-      "name": "@ant/computer-use-mcp",
-      "version": "1.0.0",
-    },
-    "packages/@ant/computer-use-swift": {
-      "name": "@ant/computer-use-swift",
-      "version": "1.0.0",
-    },
     "packages/audio-capture-napi": {
       "name": "audio-capture-napi",
+      "version": "1.0.0",
+    },
+    "packages/claude-for-chrome": {
+      "name": "claude-for-chrome",
       "version": "1.0.0",
     },
     "packages/color-diff-napi": {
@@ -149,6 +137,18 @@
       "dependencies": {
         "highlight.js": "latest",
       },
+    },
+    "packages/computer-use-input": {
+      "name": "computer-use-input",
+      "version": "1.0.0",
+    },
+    "packages/computer-use-mcp": {
+      "name": "computer-use-mcp",
+      "version": "1.0.0",
+    },
+    "packages/computer-use-swift": {
+      "name": "computer-use-swift",
+      "version": "1.0.0",
     },
     "packages/image-processor-napi": {
       "name": "image-processor-napi",
@@ -168,14 +168,6 @@
   },
   "packages": {
     "@alcalzone/ansi-tokenize": ["@alcalzone/ansi-tokenize@0.3.0", "https://registry.npmmirror.com/@alcalzone/ansi-tokenize/-/ansi-tokenize-0.3.0.tgz", { "dependencies": { "ansi-styles": "^6.2.1", "is-fullwidth-code-point": "^5.0.0" } }, "sha512-p+CMKJ93HFmLkjXKlXiVGlMQEuRb6H0MokBSwUsX+S6BRX8eV5naFZpQJFfJHjRZY0Hmnqy1/r6UWl3x+19zYA=="],
-
-    "@ant/claude-for-chrome-mcp": ["@ant/claude-for-chrome-mcp@workspace:packages/@ant/claude-for-chrome-mcp"],
-
-    "@ant/computer-use-input": ["@ant/computer-use-input@workspace:packages/@ant/computer-use-input"],
-
-    "@ant/computer-use-mcp": ["@ant/computer-use-mcp@workspace:packages/@ant/computer-use-mcp"],
-
-    "@ant/computer-use-swift": ["@ant/computer-use-swift@workspace:packages/@ant/computer-use-swift"],
 
     "@anthropic-ai/bedrock-sdk": ["@anthropic-ai/bedrock-sdk@0.26.4", "https://registry.npmmirror.com/@anthropic-ai/bedrock-sdk/-/bedrock-sdk-0.26.4.tgz", { "dependencies": { "@anthropic-ai/sdk": ">=0.50.3 <1", "@aws-crypto/sha256-js": "^4.0.0", "@aws-sdk/client-bedrock-runtime": "^3.797.0", "@aws-sdk/credential-providers": "^3.796.0", "@smithy/eventstream-serde-node": "^2.0.10", "@smithy/fetch-http-handler": "^5.0.4", "@smithy/protocol-http": "^3.0.6", "@smithy/signature-v4": "^3.1.1", "@smithy/smithy-client": "^2.1.9", "@smithy/types": "^2.3.4", "@smithy/util-base64": "^2.0.0" } }, "sha512-0Z2NY3T2wnzT9esRit6BiWpQXvL+F2b3z3Z9in3mXh7MDf122rVi2bcPowQHmo9ITXAPJmv/3H3t0V1z3Fugfw=="],
 
@@ -695,6 +687,8 @@
 
     "chromium-bidi": ["chromium-bidi@14.0.0", "https://registry.npmmirror.com/chromium-bidi/-/chromium-bidi-14.0.0.tgz", { "dependencies": { "mitt": "^3.0.1", "zod": "^3.24.1" }, "peerDependencies": { "devtools-protocol": "*" } }, "sha512-9gYlLtS6tStdRWzrtXaTMnqcM4dudNegMXJxkR0I/CXObHalYeYcAMPrL19eroNZHtJ8DQmu1E+ZNOYu/IXMXw=="],
 
+    "claude-for-chrome": ["claude-for-chrome@workspace:packages/claude-for-chrome"],
+
     "cli-boxes": ["cli-boxes@4.0.1", "https://registry.npmmirror.com/cli-boxes/-/cli-boxes-4.0.1.tgz", {}, "sha512-5IOn+jcCEHEraYolBPs/sT4BxYCe2nHg374OPiItB1O96KZFseS2gthU4twyYzeDcFew4DaUM/xwc5BQf08JJw=="],
 
     "cli-highlight": ["cli-highlight@2.1.11", "https://registry.npmmirror.com/cli-highlight/-/cli-highlight-2.1.11.tgz", { "dependencies": { "chalk": "^4.0.0", "highlight.js": "^10.7.1", "mz": "^2.4.0", "parse5": "^5.1.1", "parse5-htmlparser2-tree-adapter": "^6.0.0", "yargs": "^16.0.0" }, "bin": { "highlight": "bin/highlight" } }, "sha512-9KDcoEVwyUXrjcJNvHD0NFc/hiwe/WPVYIleQh2O1N2Zro5gWJZ/K+3DGn8w8P/F6FxOgzyC5bxDyHIgCSPhGg=="],
@@ -720,6 +714,12 @@
     "combined-stream": ["combined-stream@1.0.8", "https://registry.npmmirror.com/combined-stream/-/combined-stream-1.0.8.tgz", { "dependencies": { "delayed-stream": "~1.0.0" } }, "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg=="],
 
     "commander": ["commander@13.1.0", "https://registry.npmmirror.com/commander/-/commander-13.1.0.tgz", {}, "sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw=="],
+
+    "computer-use-input": ["computer-use-input@workspace:packages/computer-use-input"],
+
+    "computer-use-mcp": ["computer-use-mcp@workspace:packages/computer-use-mcp"],
+
+    "computer-use-swift": ["computer-use-swift@workspace:packages/computer-use-swift"],
 
     "concat-map": ["concat-map@0.0.1", "https://registry.npmmirror.com/concat-map/-/concat-map-0.0.1.tgz", {}, "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg=="],
 

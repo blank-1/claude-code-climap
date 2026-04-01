@@ -1,7 +1,7 @@
 /**
  * CLI `ComputerExecutor` implementation. Wraps two native modules:
- *   - `@ant/computer-use-input` (Rust/enigo) — mouse, keyboard, frontmost app
- *   - `@ant/computer-use-swift` — SCContentFilter screenshots, NSWorkspace apps, TCC
+ *   - `computer-use-input` (Rust/enigo) — mouse, keyboard, frontmost app
+ *   - `computer-use-swift` — SCContentFilter screenshots, NSWorkspace apps, TCC
  *
  * Contract: `packages/desktop/computer-use-mcp/src/executor.ts` in the apps
  * repo. The reference impl is Cowork's `apps/desktop/src/main/nest-only/
@@ -35,14 +35,14 @@ import type {
   ResolvePrepareCaptureResult,
   RunningApp as RunningAppType,
   ScreenshotResult,
-} from '@ant/computer-use-mcp'
+} from 'computer-use-mcp'
 
 // Use type aliases to avoid conflicts with runtime types
 type FrontmostApp = FrontmostAppType
 type InstalledApp = InstalledAppType
 type RunningApp = RunningAppType
 
-import { API_RESIZE_PARAMS, targetImageSize } from '@ant/computer-use-mcp'
+import { API_RESIZE_PARAMS, targetImageSize } from 'computer-use-mcp'
 import { logForDebugging } from '../debug.js'
 import { errorMessage } from '../errors.js'
 import { execFileNoThrow } from '../execFileNoThrow.js'
