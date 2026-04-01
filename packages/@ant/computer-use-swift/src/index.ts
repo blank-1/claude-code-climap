@@ -129,11 +129,15 @@ class AppsAPIImpl {
       end tell
     `).trim()
 
-    return result.split(', ').map((name) => ({
-      bundleId: name.replace('.app', '').toLowerCase().replace(/\s+/g, '.'),
-      displayName: name.replace('.app', ''),
-      path: `/Applications/${name}`,
-    }))
+    return result.split(', ').map((fullName) => {
+      const name = fullName.replace('.app', '')
+      return {
+        name: name,
+        bundleId: name.toLowerCase().replace(/\s+/g, '.'),
+        displayName: name,
+        path: `/Applications/${fullName}`,
+      }
+    })
   }
 
   iconDataUrl(_path: string): string | null {
@@ -146,15 +150,18 @@ class AppsAPIImpl {
       tell application "System Events"
         set appList to {}
         repeat with p in (every process whose background only is false)
-          set end of appList to (name of p & "|" & bundle identifier of p)
+          set end of appList to (name of p & "|" & bundle identifier of p & "|" & pid of p)
         end repeat
         return appList
       end tell
     `).trim()
 
     return result.split(', ').map((s) => {
-      const [name, bundleId] = s.split('|')
-      return { displayName: name, bundleId: bundleId || name.toLowerCase().replace(/\s+/g, '.') }
+      const parts = s.split('|')
+      const name = parts[0]
+      const bundleId = parts[1] || name.toLowerCase().replace(/\s+/g, '.')
+      const pid = parts[2] ? parseInt(parts[2], 10) : 0
+      return { name: name, displayName: name, bundleId, pid: pid || undefined }
     })
   }
 

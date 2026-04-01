@@ -10,14 +10,27 @@ export const API_RESIZE_PARAMS = {
   quality: 85,
 }
 
-export const targetImageSize = {
-  width: 1920,
-  height: 1080,
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function targetImageSize(width: number, height: number, params: any): [number, number] {
+  const maxWidth = params?.max_width || 1920
+  const maxHeight = params?.max_height || 1080
+
+  if (width <= maxWidth && height <= maxHeight) {
+    return [width, height]
+  }
+
+  const scale = Math.min(maxWidth / width, maxHeight / height)
+  return [
+    Math.round(width * scale),
+    Math.round(height * scale),
+  ]
 }
 
 interface Capabilities {
   screenshotFiltering: 'native'
   platform: string
+  hostBundleId?: string
+  [key: string]: any
 }
 
 interface ToolDefinition {
@@ -197,12 +210,12 @@ export const DEFAULT_GRANT_FLAGS = {
   includeAllApps: false,
 }
 export type DisplayGeometry = any
-export type FrontmostApp = { name: string; bundleId: string; displayName?: string }
-export type InstalledApp = { name: string; bundleId: string; path?: string }
+export type FrontmostApp = { name: string; bundleId: string; displayName?: string; [key: string]: any }
+export type InstalledApp = { name: string; bundleId: string; path?: string; [key: string]: any }
 export type ResolvePrepareCaptureResult = any
-export type RunningApp = { name: string; bundleId: string; displayName?: string; pid?: number }
-export type ScreenshotDims = { width: number; height: number; displayId?: number }
-export type ScreenshotResult = { png: Buffer; base64?: string; width?: number; height?: number }
+export type RunningApp = { name: string; bundleId: string; displayName?: string; pid?: number; [key: string]: any }
+export type ScreenshotDims = { width: number; height: number; displayId?: number; [key: string]: any }
+export type ScreenshotResult = { png?: Buffer; base64?: string; width?: number; height?: number; [key: string]: any }
 
 export function bindSessionContext(..._args: any[]): any {
   return new ComputerExecutor()

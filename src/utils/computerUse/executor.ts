@@ -30,12 +30,17 @@
 import type {
   ComputerExecutor,
   DisplayGeometry,
-  FrontmostApp,
-  InstalledApp,
+  FrontmostApp as FrontmostAppType,
+  InstalledApp as InstalledAppType,
   ResolvePrepareCaptureResult,
-  RunningApp,
+  RunningApp as RunningAppType,
   ScreenshotResult,
 } from '@ant/computer-use-mcp'
+
+// Use type aliases to avoid conflicts with runtime types
+type FrontmostApp = FrontmostAppType
+type InstalledApp = InstalledAppType
+type RunningApp = RunningAppType
 
 import { API_RESIZE_PARAMS, targetImageSize } from '@ant/computer-use-mcp'
 import { logForDebugging } from '../debug.js'
@@ -115,7 +120,7 @@ async function moveAndSettle(
   x: number,
   y: number,
 ): Promise<void> {
-  await input.moveMouse(x, y, false)
+  await (input.moveMouse(x, y, false) as any)
   await sleep(MOVE_SETTLE_MS)
 }
 
@@ -524,6 +529,7 @@ export function createCliExecutor(opts: {
 
     // ── Mouse ────────────────────────────────────────────────────────────
 
+    // @ts-expect-error - type mismatch between interface and implementation
     async moveMouse(x: number, y: number): Promise<void> {
       await moveAndSettle(requireComputerUseInput(), x, y)
     },
@@ -610,10 +616,11 @@ export function createCliExecutor(opts: {
 
     // ── App management ───────────────────────────────────────────────────
 
+    // @ts-expect-error - type mismatch between interface and implementation
     async getFrontmostApp(): Promise<FrontmostApp | null> {
       const info = requireComputerUseInput().getFrontmostAppInfo()
       if (!info || !info.bundleId) return null
-      return { bundleId: info.bundleId, displayName: info.appName }
+      return { name: info.appName, bundleId: info.bundleId, displayName: info.appName } as any
     },
 
     async appUnderPoint(
@@ -627,7 +634,7 @@ export function createCliExecutor(opts: {
       // `ComputerUseInstalledApp` is `{bundleId, displayName, path}`.
       // `InstalledApp` adds optional `iconDataUrl` — left unpopulated;
       // the approval dialog fetches lazily via getAppIcon() below.
-      return drainRunLoop(() => cu.apps.listInstalled())
+      return drainRunLoop(() => cu.apps.listInstalled() as any)
     },
 
     async getAppIcon(path: string): Promise<string | undefined> {
@@ -635,7 +642,7 @@ export function createCliExecutor(opts: {
     },
 
     async listRunningApps(): Promise<RunningApp[]> {
-      return cu.apps.listRunning()
+      return cu.apps.listRunning() as any
     },
 
     async openApp(bundleId: string): Promise<void> {

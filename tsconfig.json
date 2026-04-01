@@ -13,8 +13,9 @@
         "types": ["bun"],
         "paths": {
             "src/*": ["./src/*"]
-        }
+        },
+        "ignoreDeprecations": "6.0"
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "packages/**/*.ts"],
     "exclude": ["node_modules"]
 }

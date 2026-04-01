@@ -108,12 +108,12 @@ class ClaudeForChromeContextImpl {
     }
   }
 
-  async evaluate<T>(script: string): Promise<T | null> {
+  async evaluate<T = unknown>(script: string): Promise<T | null> {
     const page = await this.getPage()
     if (!page) return null
 
     try {
-      return await page.evaluate(script)
+      return await page.evaluate((s) => eval(s), script) as T
     } catch {
       return null
     }
@@ -206,7 +206,7 @@ export class ClaudeForChromeContext {
 
 export class Logger extends LoggerImpl {}
 
-export type PermissionMode = 'allow' | 'deny' | 'ask'
+export type PermissionMode = 'allow' | 'deny' | 'ask' | 'skip_all_permission_checks' | 'follow_a_plan'
 
 export function createClaudeForChromeMcpServer(
   _options: any,
