@@ -9,15 +9,6 @@ Anthropic 官方 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) C
 > V3 会实现多层级解耦, 很多比如 UI 包, Agent 包都可以独立优化; 
 >
 > V4 会完成大量的测试文件, 以提高稳定性
->
-> 我不知道这个项目还会存在多久, fork 不好使, git clone 或者下载 .zip 包才稳健;
-> 
-> 这个项目更新很快, 后台有 Opus 持续优化, 所以你可以提 issues, 但是 PR 暂时不会接受;
->
-> 存活记录:
-> 开源后 12 小时: 愚人节, star 破 1k, 并且牢 A 没有发邮件搞这个项目
->
-> 如果你想要私人咨询服务, 那么可以发送邮件到 claude-code-best@proton.me, 备注咨询与联系方式即可; 由于后续工作非常多, 可能会忽略邮件, 半天没回复, 可以多发;
 
 ## 快速开始
 
